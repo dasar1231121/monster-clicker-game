@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Monster Clicker RPG</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header with resources -->
+        <div id="header">
+            <div class="resource">
+                <span class="icon">💰</span>
+                <span id="gold">0</span>
+            </div>
+            <div class="resource">
+                <span class="icon">💎</span>
+                <span id="diamonds">0</span>
+            </div>
+            <div class="resource">
+                <span class="icon">🌊</span>
+                <span>Wave: <span id="wave">1</span></span>
+            </div>
+        </div>
+
+        <!-- Player stats -->
+        <div id="player-stats">
+            <div class="stat-bar">
+                <div class="stat-label">HP</div>
+                <div class="progress-bar">
+                    <div id="player-hp-bar" class="progress-fill hp"></div>
+                </div>
+                <div class="stat-value"><span id="player-hp">100</span>/<span id="player-max-hp">100</span></div>
+            </div>
+            <div class="stat-info">
+                <span>⚔️ Урон: <span id="player-damage">10</span></span>
+                <span>💪 Уровень: <span id="player-level">1</span></span>
+            </div>
+        </div>
+
+        <!-- Battle area -->
+        <div id="battle-area">
+            <div id="enemy-container">
+                <div id="enemy-sprite">👹</div>
+                <div id="enemy-name">Гоблин</div>
+                <div class="progress-bar">
+                    <div id="enemy-hp-bar" class="progress-fill enemy"></div>
+                </div>
+                <div class="stat-value"><span id="enemy-hp">50</span>/<span id="enemy-max-hp">50</span></div>
+                <div id="kill-counter">Убито: <span id="kills">0</span>/10</div>
+            </div>
+            <button id="attack-btn" class="attack-button">⚔️ АТАКОВАТЬ</button>
+        </div>
+
+        <!-- Navigation tabs -->
+        <div id="tabs">
+            <button class="tab active" data-tab="upgrades">📈 Улучшения</button>
+            <button class="tab" data-tab="prestige">⭐ Престиж</button>
+            <button class="tab" data-tab="achievements">🏆 Достижения</button>
+            <button class="tab" data-tab="challenges">⚔️ Испытания</button>
+            <button class="tab" data-tab="buffs">✨ Бафы</button>
+        </div>
+
+        <!-- Content panels -->
+        <div id="content">
+            <!-- Upgrades panel -->
+            <div id="upgrades-panel" class="panel active">
+                <h2>Улучшения за золото</h2>
+                <div id="upgrades-list"></div>
+            </div>
+
+            <!-- Prestige panel -->
+            <div id="prestige-panel" class="panel">
+                <h2>Система престижа</h2>
+                <div class="prestige-info">
+                    <p>Престиж сбрасывает прогресс, но дает постоянные бонусы!</p>
+                    <p>Очки престижа: <span id="prestige-points">0</span></p>
+                    <p>Требуется волна 10+ для престижа</p>
+                </div>
+                <button id="prestige-btn" class="prestige-button" disabled>🌟 ПРЕСТИЖ</button>
+                <div id="prestige-upgrades"></div>
+            </div>
+
+            <!-- Achievements panel -->
+            <div id="achievements-panel" class="panel">
+                <h2>Достижения</h2>
+                <div id="achievements-list"></div>
+            </div>
+
+            <!-- Challenges panel -->
+            <div id="challenges-panel" class="panel">
+                <h2>Испытания</h2>
+                <div id="challenges-list"></div>
+                <div id="class-selection" style="display:none;">
+                    <h3>Выберите класс</h3>
+                    <div id="class-list"></div>
+                </div>
+            </div>
+
+            <!-- Buffs panel -->
+            <div id="buffs-panel" class="panel">
+                <h2>Временные бафы</h2>
+                <div id="active-buffs"></div>
+                <div id="buffs-shop"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/upgrades.js"></script>
+    <script src="js/prestige.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/challenges.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/buffs.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
