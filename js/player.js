@@ -12,6 +12,11 @@ const Player = {
     prestigePoints: 0,
     selectedClass: null,
     skillPoints: 0,
+    achievements: [],
+    challenges: [],
+    activeChallenge: null,
+    class: null,
+    activeBuffs: [],
     
     upgrades: {
         damage: 0,
@@ -25,11 +30,6 @@ const Player = {
         damageMulti: 0,
         goldMulti: 0,
         xpMulti: 0
-    },
-    
-    init() {
-        this.maxHp = this.getMaxHp();
-        this.hp = this.maxHp;
     },
     
     getDamage() {
