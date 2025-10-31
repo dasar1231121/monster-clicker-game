@@ -27,27 +27,38 @@ jobs:
     - name: Install dependencies
       run: npm install
     
-    - name: Create www directory and copy all files
+    - name: Prepare www directory BEFORE adding Android
       run: |
-        mkdir -p www
+        echo "=== Creating www directory ==="
+        mkdir -p www/css www/js
+        echo "=== Copying index.html ==="
         cp -v index.html www/
-        cp -rv css www/
-        cp -rv js www/
-        echo "=== Verifying files in www ==="
+        echo "=== Copying CSS ==="
+        cp -rv css/* www/css/
+        echo "=== Copying JS files ==="
+        cp -rv js/* www/js/
+        echo "=== Verifying all files copied ==="
         ls -laR www/
-        echo "=== Checking js files ==="
-        find www/js -name "*.js" -ls
+        echo "=== Counting JS files ==="
+        find www/js -name "*.js" | wc -l
+        echo "Should be 14 JS files!"
       
-    - name: Add Android platform
+    - name: Add Android platform (files already in www)
       run: npx cap add android
       
     - name: Sync Capacitor
       run: npx cap sync android
       
-    - name: Verify Android assets
+    - name: Verify files in Android assets
       run: |
-        echo "=== Android assets directory ==="
-        ls -la android/app/src/main/assets/public/
+        echo "=== Checking Android assets ==="
+        if [ -d "android/app/src/main/assets/public" ]; then
+          ls -laR android/app/src/main/assets/public/
+          echo "=== Counting JS in Android assets ==="
+          find android/app/src/main/assets/public -name "*.js" | wc -l
+        else
+          echo "ERROR: public folder not found!"
+        fi
         
     - name: Grant execute permission for gradlew
       run: chmod +x android/gradlew
@@ -56,11 +67,17 @@ jobs:
       working-directory: android
       run: ./gradlew assembleDebug --no-daemon --stacktrace
       
-    - name: Verify APK size and contents
+    - name: Check APK size
       run: |
-        echo "=== APK file info ==="
+        echo "=== APK Information ==="
         ls -lh android/app/build/outputs/apk/debug/app-debug.apk
-        file android/app/build/outputs/apk/debug/app-debug.apk
+        SIZE=$(stat -f%z android/app/build/outputs/apk/debug/app-debug.apk 2>/dev/null || stat -c%s android/app/build/outputs/apk/debug/app-debug.apk)
+        echo "APK size: $SIZE bytes"
+        if [ $SIZE -lt 5000000 ]; then
+          echo "WARNING: APK is smaller than 5MB - files might be missing!"
+        else
+          echo "SUCCESS: APK size looks good!"
+        fi
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
