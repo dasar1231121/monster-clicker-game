@@ -1,0 +1,87 @@
+/** General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Responsive Design */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+/* Buttons */
+.button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+/* Progress Bar */
+.progress {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #4caf50;
+    height: 20px;
+    width: 0; /* Set dynamically */
+    transition: width 0.5s ease;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    cursor: pointer;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    background: #e7e7e7;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.tab:hover {
+    background: #d7d7d7;
+}
+
+/* Damage Number Animation */
+.damage-number {
+    color: red;
+    font-size: 24px;
+    position: relative;
+    animation: damageAnimation 0.5s ease-out;
+}
+
+@keyframes damageAnimation {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(-10px); opacity: 0.8; }
+    100% { transform: translateY(0); opacity: 0; }
+}
