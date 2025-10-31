@@ -1,1 +1,10 @@
-{\n  "appId": "com.dasar1231121.monsterclicker",\n  "appName": "Monster Clicker RPG",\n  "webDir": ".",\n  "bundledWebRuntime": false,\n  "android": {\n    "allowMixedContent": true,\n    "captureInput": true\n  }\n}
+{
+  "appId": "com.dasar1231121.monsterclicker",
+  "appName": "Monster Clicker RPG",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true
+  }
+}
