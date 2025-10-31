@@ -101,4 +101,6 @@ const UI = {
                     <div class="upgrade-name">${upgrade.name} (Ур. ${level})</div>
                     <div class="upgrade-description">${upgrade.description}</div>
                 </div>
-                <button class="upgrade-btn" onclick="buyPrestigeUpgrade('${upgrade.id}')
+               <button class="upgrade-btn" onclick="buyPrestigeUpgrade('${upgrade.id}')" ${!canAfford ? 'disabled' : ''}>
+    ${formatNumber(cost)} 💎
+</button>
